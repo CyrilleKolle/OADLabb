@@ -76,18 +76,22 @@ public class ShoppingCart {
     }
 
     public String receipt() {
-        String line = "-------------------------------------------\n";
+        String line = "----------------------------------------------------\n";
+        String s = String.format("%-15s %5s %10s %10s\n", "Item", "Qty", "Price", "Item's Cost");
+        String s1 = String.format("%-15s %5s %10s %10s\n", "----", "---", "-----", "------------");
         StringBuilder sb = new StringBuilder();
         sb.append(line);
+        sb.append(s);
+        sb.append(s1);
         var list = items.stream()
                 .sorted(Comparator.comparing(item -> item.product().name()))
                 .collect(Collectors.toList());
         for (var each : list) {
-            sb.append(String.format("%-24s % 7.2f quantity: %d%n", each.product().name(), each.itemCost(), each.quantity()));
+            sb.append(String.format("%-15s %5d %10.2f %10.2f\n", each.product().name(), each.quantity(), each.itemCost(), each.itemCost().multiply(BigDecimal.valueOf(each.quantity()))));
         }
         sb.append(line);
-        sb.append(String.format("         %24s% 8.2f", "        TOTAL:", calculatePrice()));
-        sb.append(String.format("            \n%24s% 8.2f", "      DISCOUNT:", bestDiscount.multiply(BigDecimal.valueOf(-1))));
+        sb.append(String.format(" %-35s% 8.2f\n", "TOTAL TO PAY:", calculatePrice()));
+        sb.append(String.format(" %-35s% 8.2f", "DISCOUNT:", bestDiscount.multiply(BigDecimal.valueOf(-1))));
         return sb.toString();
     }
 

@@ -24,13 +24,20 @@ public class main {
         shoppingCart.addCartItem(item5);
 
 
-     // shoppingCart.addDiscount(new BuyMoreGetOneForFree());
+        shoppingCart.addDiscount(new BuyMoreGetOneForFree());
         shoppingCart.addDiscount(new BuyThreeGetOneForFree());
-       //shoppingCart.addDiscount(new BuyMoreGetTenPercent());
+        shoppingCart.addDiscount(new BuyMoreGetTenPercent());
 
 
         System.out.println(shoppingCart.receipt());
-//        System.out.println(shoppingCart.undo());
+
+        shoppingCart.removeCartItem(item1);
+        System.out.println("\n\n remove/undo/redo demonstration");
+        System.out.println("\nnumber of items after item removed = " + shoppingCart.getItems().size());
+        shoppingCart.undo();
+        System.out.println("number of items after undo = " + shoppingCart.getItems().size());
+        shoppingCart.redo();
+        System.out.println("number of items after redo = " + shoppingCart.getItems().size());
 
     }
 }

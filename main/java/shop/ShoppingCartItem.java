@@ -19,23 +19,23 @@ public class ShoppingCartItem {
         this.quantity = quantity;
     }
 
-    public void setQuantity(int newQuantity){
-        int oldQuantity = quantity;
-
-        Command undoCommand = new Command() {
-            @Override
-            public void execute() {
-                quantity = oldQuantity;
-            }
-
-            @Override
-            public void redo() {
-                quantity = newQuantity;
-            }
-        };
-        this.quantity = newQuantity;
-        commandManager.addToUndo(undoCommand);
-    }
+//    public void setQuantity(int newQuantity){
+//        int oldQuantity = quantity;
+//
+//        Command undoCommand = new Command() {
+//            @Override
+//            public void execute() {
+//                quantity = oldQuantity;
+//            }
+//
+//            @Override
+//            public void redo() {
+//                quantity = newQuantity;
+//            }
+//        };
+//        this.quantity = newQuantity;
+//        commandManager.addToUndo(undoCommand);
+//    }
 
     public int quantity(){
         return quantity;
